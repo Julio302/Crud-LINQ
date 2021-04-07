@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JFernandezAlumnosDigiProModelStoreContainer" CdmEntityContainer="JFernandezAlumnosDigiProEntities">
+    <EntitySetMapping Name="AlumnoMaterias">
+      <EntityTypeMapping TypeName="JFernandezAlumnosDigiProModel.AlumnoMateria">
+        <MappingFragment StoreEntitySet="AlumnoMateria">
+          <ScalarProperty Name="IdAlumnoMateria" ColumnName="IdAlumnoMateria" />
+          <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
+          <ScalarProperty Name="IdMateria" ColumnName="IdMateria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Alumnos">
+      <EntityTypeMapping TypeName="JFernandezAlumnosDigiProModel.Alumno">
+        <MappingFragment StoreEntitySet="Alumnos">
+          <ScalarProperty Name="idAlumno" ColumnName="idAlumno" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+          <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Materias">
+      <EntityTypeMapping TypeName="JFernandezAlumnosDigiProModel.Materia">
+        <MappingFragment StoreEntitySet="Materias">
+          <ScalarProperty Name="idMateria" ColumnName="idMateria" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="costo" ColumnName="costo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

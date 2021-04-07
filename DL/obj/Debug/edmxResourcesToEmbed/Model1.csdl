@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JFernandezAlumnosDigiProModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AlumnoMateria">
+    <Key>
+      <PropertyRef Name="IdAlumnoMateria" />
+    </Key>
+    <Property Name="IdAlumnoMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdAlumno" Type="Int32" />
+    <Property Name="IdMateria" Type="Int32" />
+    <NavigationProperty Name="Alumno" Relationship="Self.FK__AlumnoMat__IdAlu__145C0A3F" FromRole="AlumnoMateria" ToRole="Alumnos" />
+    <NavigationProperty Name="Materia" Relationship="Self.FK__AlumnoMat__IdMat__15502E78" FromRole="AlumnoMateria" ToRole="Materias" />
+  </EntityType>
+  <EntityType Name="Alumno">
+    <Key>
+      <PropertyRef Name="idAlumno" />
+    </Key>
+    <Property Name="idAlumno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AlumnoMaterias" Relationship="Self.FK__AlumnoMat__IdAlu__145C0A3F" FromRole="Alumnos" ToRole="AlumnoMateria" />
+  </EntityType>
+  <EntityType Name="Materia">
+    <Key>
+      <PropertyRef Name="idMateria" />
+    </Key>
+    <Property Name="idMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="costo" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="AlumnoMaterias" Relationship="Self.FK__AlumnoMat__IdMat__15502E78" FromRole="Materias" ToRole="AlumnoMateria" />
+  </EntityType>
+  <Association Name="FK__AlumnoMat__IdAlu__145C0A3F">
+    <End Role="Alumnos" Type="Self.Alumno" Multiplicity="0..1" />
+    <End Role="AlumnoMateria" Type="Self.AlumnoMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="idAlumno" />
+      </Principal>
+      <Dependent Role="AlumnoMateria">
+        <PropertyRef Name="IdAlumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AlumnoMat__IdMat__15502E78">
+    <End Role="Materias" Type="Self.Materia" Multiplicity="0..1" />
+    <End Role="AlumnoMateria" Type="Self.AlumnoMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materias">
+        <PropertyRef Name="idMateria" />
+      </Principal>
+      <Dependent Role="AlumnoMateria">
+        <PropertyRef Name="IdMateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="JFernandezAlumnosDigiProEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AlumnoMaterias" EntityType="Self.AlumnoMateria" />
+    <EntitySet Name="Alumnos" EntityType="Self.Alumno" />
+    <EntitySet Name="Materias" EntityType="Self.Materia" />
+    <AssociationSet Name="FK__AlumnoMat__IdAlu__145C0A3F" Association="Self.FK__AlumnoMat__IdAlu__145C0A3F">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="AlumnoMateria" EntitySet="AlumnoMaterias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AlumnoMat__IdMat__15502E78" Association="Self.FK__AlumnoMat__IdMat__15502E78">
+      <End Role="Materias" EntitySet="Materias" />
+      <End Role="AlumnoMateria" EntitySet="AlumnoMaterias" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

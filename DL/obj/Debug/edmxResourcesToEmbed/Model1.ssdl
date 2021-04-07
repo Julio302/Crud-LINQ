@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JFernandezAlumnosDigiProModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AlumnoMateria">
+    <Key>
+      <PropertyRef Name="IdAlumnoMateria" />
+    </Key>
+    <Property Name="IdAlumnoMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAlumno" Type="int" />
+    <Property Name="IdMateria" Type="int" />
+  </EntityType>
+  <EntityType Name="Alumnos">
+    <Key>
+      <PropertyRef Name="idAlumno" />
+    </Key>
+    <Property Name="idAlumno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="apellidoPaterno" Type="varchar" MaxLength="50" />
+    <Property Name="apellidoMaterno" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Materias">
+    <Key>
+      <PropertyRef Name="idMateria" />
+    </Key>
+    <Property Name="idMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="costo" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <Association Name="FK__AlumnoMat__IdAlu__145C0A3F">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="0..1" />
+    <End Role="AlumnoMateria" Type="Self.AlumnoMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="idAlumno" />
+      </Principal>
+      <Dependent Role="AlumnoMateria">
+        <PropertyRef Name="IdAlumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AlumnoMat__IdMat__15502E78">
+    <End Role="Materias" Type="Self.Materias" Multiplicity="0..1" />
+    <End Role="AlumnoMateria" Type="Self.AlumnoMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materias">
+        <PropertyRef Name="idMateria" />
+      </Principal>
+      <Dependent Role="AlumnoMateria">
+        <PropertyRef Name="IdMateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="JFernandezAlumnosDigiProModelStoreContainer">
+    <EntitySet Name="AlumnoMateria" EntityType="Self.AlumnoMateria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Materias" EntityType="Self.Materias" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__AlumnoMat__IdAlu__145C0A3F" Association="Self.FK__AlumnoMat__IdAlu__145C0A3F">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="AlumnoMateria" EntitySet="AlumnoMateria" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AlumnoMat__IdMat__15502E78" Association="Self.FK__AlumnoMat__IdMat__15502E78">
+      <End Role="Materias" EntitySet="Materias" />
+      <End Role="AlumnoMateria" EntitySet="AlumnoMateria" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

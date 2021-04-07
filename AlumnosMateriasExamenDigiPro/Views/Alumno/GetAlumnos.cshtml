@@ -1,0 +1,33 @@
+﻿@model ML.Alumno
+@{
+    ViewBag.Title = "GetAlumnos";
+}
+
+<h2>Alumnos</h2>
+
+@Html.ActionLink("+", "Form", "Alumno", htmlAttributes: new { @class = "btn btn-success" })
+<table class="table table-bordered table-hover">
+    <thead class="text-center">
+        <tr>
+            <td>Id</td>
+            <td>Nombre</td>
+            <td>Apellido paterno</td>
+            <td>Apellido materno</td>
+            <td colspan="2">Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(ML.Alumno alumno in Model.Alumnos){
+            <tr>
+                <td>@alumno.IdAlumno</td>
+                <td>@alumno.Nombre</td>
+                <td>@alumno.ApellidoPaterno</td>
+                <td>@alumno.ApellidoMaterno</td>
+                <td>
+                    <a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Alumno", new { IdAlumno = alumno.IdAlumno})" onclick="return confirm('Estas seguro que deseas editar este registro?');"></a>
+                    <a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Alumno", new { IdAlumno = alumno.IdAlumno})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
